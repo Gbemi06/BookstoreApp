@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/a5c9a8fb06.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Book Library</title>
+  </head>
+  <body>
+    <container class="grid-container">
+      <header class="header">
+        <h1 class="header_title">Book Library</h1>
+        <div class="header_search">
+          <input
+            type="text"
+            class="header_search-input"
+            placeholder="Search for a book"
+          />
+          <button class="header_search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </header>
+      <section class="form-section">
+        <h2 class="form-title">Add a Book</h2>
+        <form class="form-div">
+          <div>
+            <label for="title">* Book Title: </label>
+            <input type="text" placeholder="Book Title" id="title" required />
+          </div>
+          <div class="author-div">
+            <label for="author">* Author:</label>
+            <input type="text" placeholder="Author" id="author" required />
+          </div>
+          <div>
+            <label for="pages">* Number of Pages:</label>
+            <input
+              type="number"
+              placeholder="Number of Pages"
+              id="pages"
+              required
+            />
+          </div>
+          <div>
+            <label for="read">* Read It:</label>
+            <input
+              type="checkbox"
+              placeholder="Have you read it?"
+              id="read"
+              required
+            />
+          </div>
+          <div class="btn-div">
+            <button type="submit" class="new-book">Submit</button>
+            <button type="reset">Clear</button>
+          </div>
+        </form>
+        <!-- <div class="add-btn-div">
+          <button class="add-btn">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div> -->
+      </section>
+
+      <div class="result-section">
+        <h2 class="result-section_title">Your Library</h2>
+        <div class="result-div"></div>
+      </div>
+    </container>
+    <script src="index.js" defer></script>
+  </body>
+</html>
