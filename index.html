@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
     <script
       src="https://kit.fontawesome.com/a5c9a8fb06.js"
       crossorigin="anonymous"
@@ -31,29 +32,19 @@
         <form class="form-div">
           <div>
             <label for="title">* Book Title: </label>
-            <input type="text" placeholder="Book Title" id="title" required />
+            <input type="text" placeholder="Book Title" id="title" />
           </div>
           <div class="author-div">
             <label for="author">* Author:</label>
-            <input type="text" placeholder="Author" id="author" required />
+            <input type="text" placeholder="Author" id="author" />
           </div>
           <div>
             <label for="pages">* Number of Pages:</label>
-            <input
-              type="number"
-              placeholder="Number of Pages"
-              id="pages"
-              required
-            />
+            <input type="number" placeholder="Number of Pages" id="pages" />
           </div>
           <div>
             <label for="read">* Read It:</label>
-            <input
-              type="checkbox"
-              placeholder="Have you read it?"
-              id="read"
-              required
-            />
+            <input type="checkbox" placeholder="Have you read it?" id="read" />
           </div>
           <div class="btn-div">
             <button type="submit" class="new-book">Submit</button>
@@ -72,6 +63,5 @@
         <div class="result-div"></div>
       </div>
     </container>
-    <script src="index.js" defer></script>
   </body>
 </html>
