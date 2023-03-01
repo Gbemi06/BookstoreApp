@@ -6,7 +6,28 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-console.log(myLibrary);
+
+function getBook() {
+  if (localStorage.getItem("myLibrary") === null) {
+    myLibrary = [];
+  } else {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  }
+  return myLibrary;
+}
+
+function storeBook(myLibrary) {
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function deleteBook(title) {
+  myLibrary.forEach((book, index) => {
+    if (book.title === title) {
+      myLibrary.splice(index, 1);
+    }
+  });
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
 
 document
   .querySelector(".form-div")
@@ -33,6 +54,7 @@ function addBookToLibrary(e) {
     showAlert("Book already exists", "error");
   } else {
     myLibrary.push(book);
+    storeBook(myLibrary);
     displayBook(book);
     showAlert("Book added", "success");
     // clearForm();
@@ -53,7 +75,7 @@ function showAlert(message, className) {
   const form = document.querySelector(".form-div");
   formTitle.insertBefore(div, form);
 
-  setTimeout(() => document.querySelector(".alert").remove(), 5000);
+  setTimeout(() => document.querySelector(".alert").remove(), 3000);
 }
 
 // function clearForm() {
@@ -74,81 +96,28 @@ function displayBook(book) {
   <p>${author}</p>
   <p>${pages}</p>
   <p>${read}</p>
-  <button class="remove"><i class="fa-solid fa-trash"></i></button>
+  <button ><i class="fa-solid fa-trash remove"></i></button>
   </div>`;
 
   let library = document.querySelector(".result-div");
   library.innerHTML += code;
 
-  let removeButton = document.querySelector(".remove");
-  removeButton.addEventListener("click", removeBook);
+  let removeBtn = document.querySelectorAll(".remove");
+  removeBtn.forEach((btn) => {
+    btn.addEventListener("click", removeBook);
+  });
 }
-
-//   let getBook = document.querySelector(".book");
-//   let bookTitle = document.createElement("h3");
-//   bookTitle.textContent = title;
-//   let bookAuthor = document.createElement("p");
-//   bookAuthor.textContent = author;
-//   let bookPages = document.createElement("p");
-//   bookPages.textContent = pages;
-//   let bookRead = document.createElement("p");
-//   bookRead.textContent = read;
-//   let removeButton = document.createElement("button");
-//   removeButton.textContent = "Remove";
-//   removeButton.classList.add("remove");
-//   removeButton.addEventListener("click", removeBook);
-//   book.appendChild(bookTitle);
-//   book.appendChild(bookAuthor);
-//   book.appendChild(bookPages);
-//   book.appendChild(bookRead);
-//   book.appendChild(removeButton);
-//   let library = document.querySelector(".library");
-//   library.appendChild(book);
-// }
 
 function removeBook(e) {
   if (e.target.classList.contains("remove")) {
-    e.target.parentElement.remove();
+    e.target.parentElement.parentElement.remove();
+    deleteBook(e.target.parentElement.parentElement.children[0].textContent);
+    showAlert("Book deleted successfully", "success");
+    console.log(e.target.parentElement.parentElement);
   }
 }
-
-function getBook() {
-  if (localStorage.getItem("myLibrary") === null) {
-    myLibrary = [];
-  } else {
-    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
-  }
-}
-
-function storeBook() {
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-}
-
-// function  () {
-//   if(localStorage.getItem('myLibrary') === null) {
-//     myLibrary = [];
-//   } else {
-//     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-//   }
-//   let book = new Book(title, author, pages, read);
-
-//   myLibrary.push(book);
-//   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-
-// }
-
-// function getBook() {
-//   let book = new Book(title, author, pages, read);
-//   myLibrary.push(book);
-//   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-// }
-
-// let getBook = document.querySelector(".book");
-// getBook.addEventListener("click", getBook);
-
-let newBook = document.querySelector(".new-book");
-newBook.addEventListener("click", addBookToLibrary);
 
 window.onload = function () {
-  // displayBook(book);
+  getBook();
+  showAllBooks();
 };
