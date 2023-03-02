@@ -17,14 +17,13 @@
       <header class="header">
         <h1 class="header_title">Book Library</h1>
         <div class="header_search">
+          <label for="search">Search</label>
           <input
             type="text"
-            class="header_search-input"
+            id="search"
+            name="search"
             placeholder="Search for a book"
           />
-          <button class="header_search-btn">
-            <i class="fas fa-search"></i>
-          </button>
         </div>
       </header>
       <section class="form-section">
@@ -40,7 +39,7 @@
           </div>
           <div>
             <label for="pages">* Number of Pages:</label>
-            <input type="number" placeholder="Number of Pages" id="pages" />
+            <input type="text" placeholder="Number of Pages" id="pages" />
           </div>
           <div>
             <label for="read">* Read It:</label>
@@ -51,11 +50,6 @@
             <button type="reset">Clear</button>
           </div>
         </form>
-        <!-- <div class="add-btn-div">
-          <button class="add-btn">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div> -->
       </section>
 
       <div class="result-section">
