@@ -50,14 +50,14 @@ function addBookToLibrary(e) {
     showAlert("Please fill in all fields", "error");
   } else if (isNaN(pages)) {
     showAlert("Please enter a number for pages", "error");
-  } else if (myLibrary.includes(book)) {
+  } else if (myLibrary.some((book) => book.title === title)) {
     showAlert("Book already exists", "error");
   } else {
     myLibrary.push(book);
     storeBook(myLibrary);
     displayBook(book);
     showAlert("Book added", "success");
-    // clearForm();
+    clearForm();
   }
 }
 
@@ -78,12 +78,12 @@ function showAlert(message, className) {
   setTimeout(() => document.querySelector(".alert").remove(), 3000);
 }
 
-// function clearForm() {
-//   document.querySelector("#title").value = "";
-//   document.querySelector("#author").value = "";
-//   document.querySelector("#pages").value = "";
-//   document.querySelector("#read").value = "";
-// }
+function clearForm() {
+  document.querySelector("#title").value = "";
+  document.querySelector("#author").value = "";
+  document.querySelector("#pages").value = "";
+  document.querySelector("#read").value = "";
+}
 
 function displayBook(book) {
   let title = book.title;
@@ -116,6 +116,21 @@ function removeBook(e) {
     console.log(e.target.parentElement.parentElement);
   }
 }
+
+const handleSearch = (e) => {
+  const searchValue = e.target.value.toLowerCase();
+  const books = document.querySelectorAll(".book");
+  books.forEach((book) => {
+    const title = book.children[0].textContent.toLowerCase();
+    if (title.includes(searchValue)) {
+      book.style.display = "block";
+    } else {
+      book.style.display = "none";
+    }
+  });
+};
+
+document.querySelector("#search").addEventListener("keyup", handleSearch);
 
 window.onload = function () {
   getBook();
