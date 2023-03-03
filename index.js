@@ -136,3 +136,16 @@ window.onload = function () {
   getBook();
   showAllBooks();
 };
+
+// module.exports = {
+//   Book,
+//   getBook,
+//   storeBook,
+//   deleteBook,
+//   addBookToLibrary,
+//   showAllBooks,
+//   showAlert,
+//   displayBook,
+//   removeBook,
+//   myLibrary,
+// };
