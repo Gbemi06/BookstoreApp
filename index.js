@@ -50,7 +50,7 @@ function addBookToLibrary(e) {
     showAlert("Please fill in all fields", "error");
   } else if (isNaN(pages)) {
     showAlert("Please enter a number for pages", "error");
-  } else if (myLibrary.includes(book)) {
+  } else if (myLibrary.some((book) => book.title === title)) {
     showAlert("Book already exists", "error");
   } else {
     myLibrary.push(book);
@@ -121,3 +121,16 @@ window.onload = function () {
   getBook();
   showAllBooks();
 };
+
+// module.exports = {
+//   Book,
+//   getBook,
+//   storeBook,
+//   deleteBook,
+//   addBookToLibrary,
+//   showAllBooks,
+//   showAlert,
+//   displayBook,
+//   removeBook,
+//   myLibrary,
+// };
