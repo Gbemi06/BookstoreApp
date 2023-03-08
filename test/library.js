@@ -29,10 +29,6 @@ function deleteBook(title) {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
-document
-  .querySelector(".form-div")
-  .addEventListener("submit", addBookToLibrary);
-
 function addBookToLibrary(e) {
   e.preventDefault();
   let title = document.querySelector("#title").value;
@@ -50,9 +46,7 @@ function addBookToLibrary(e) {
     showAlert("Please fill in all fields", "error");
   } else if (isNaN(pages)) {
     showAlert("Please enter a number for pages", "error");
-  } else if (
-    myLibrary.some((book) => book.title.toLowerCase() === title.toLowerCase())
-  ) {
+  } else if (myLibrary.some((book) => book.title === title)) {
     showAlert("Book already exists", "error");
   } else {
     myLibrary.push(book);
@@ -93,20 +87,16 @@ function displayBook(book) {
   let pages = book.pages;
   let read = book.read;
 
-  const table = document.querySelector(".result-table");
-  console.log(table);
-  const row = document.createElement("tr");
-  row.className = "book";
+  let code = `<div class="book">
+    <h3>${title}</h3>
+    <p>${author}</p>
+    <p>${pages}</p>
+    <p>${read}</p>
+    <button ><i class="fa-solid fa-trash remove"></i></button>
+    </div>`;
 
-  row.innerHTML = `
-  <td>${title}</td>
-  <td>${author}</td>
-  <td>${pages}</td>
-  <td>${read}</td>
-  <td><button class="remove"><i class="fa-solid fa-trash"></i></button></td>
-  `;
-
-  table.appendChild(row);
+  let library = document.querySelector(".result-div");
+  library.innerHTML += code;
 
   let removeBtn = document.querySelectorAll(".remove");
   removeBtn.forEach((btn) => {
@@ -115,11 +105,12 @@ function displayBook(book) {
 }
 
 function removeBook(e) {
-  e.target.parentElement.parentElement.parentElement.remove();
-  deleteBook(
-    e.target.parentElement.parentElement.parentElement.children[0].textContent
-  );
-  showAlert("Book deleted successfully", "success");
+  if (e.target.classList.contains("remove")) {
+    e.target.parentElement.parentElement.remove();
+    deleteBook(e.target.parentElement.parentElement.children[0].textContent);
+    showAlert("Book deleted successfully", "success");
+    console.log(e.target.parentElement.parentElement);
+  }
 }
 
 const handleSearch = (e) => {
@@ -135,9 +126,16 @@ const handleSearch = (e) => {
   });
 };
 
-document.querySelector("#search").addEventListener("keyup", handleSearch);
-
-window.onload = function () {
-  getBook();
-  showAllBooks();
+module.exports = {
+  Book,
+  getBook,
+  storeBook,
+  deleteBook,
+  addBookToLibrary,
+  showAllBooks,
+  showAlert,
+  clearForm,
+  displayBook,
+  removeBook,
+  handleSearch,
 };
