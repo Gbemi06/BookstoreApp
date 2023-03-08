@@ -42,8 +42,11 @@
             <input type="text" placeholder="Number of Pages" id="pages" />
           </div>
           <div>
-            <label for="read">* Read It:</label>
-            <input type="checkbox" placeholder="Have you read it?" id="read" />
+            <label for="read">Have you read It:</label>
+            <select name="read" id="read">
+              <option value="yes" default>Yes</option>
+              <option value="no">No</option>
+            </select>
           </div>
           <div class="btn-div">
             <button type="submit" class="new-book">Submit</button>
@@ -53,8 +56,19 @@
       </section>
 
       <div class="result-section">
-        <h2 class="result-section_title">Your Library</h2>
-        <div class="result-div"></div>
+        <h2>Your Library</h2>
+        <table class="result-div">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Pages</th>
+              <th>Read</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody class="result-table"></tbody>
+        </table>
       </div>
     </container>
   </body>
