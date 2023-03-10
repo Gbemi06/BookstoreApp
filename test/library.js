@@ -74,13 +74,6 @@ function showAlert(message, className) {
   setTimeout(() => document.querySelector(".alert").remove(), 3000);
 }
 
-function clearForm() {
-  document.querySelector("#title").value = "";
-  document.querySelector("#author").value = "";
-  document.querySelector("#pages").value = "";
-  document.querySelector("#read").value = "";
-}
-
 function displayBook(book) {
   let title = book.title;
   let author = book.author;
@@ -126,16 +119,14 @@ const handleSearch = (e) => {
   });
 };
 
-module.exports = {
-  Book,
-  getBook,
-  storeBook,
-  deleteBook,
-  addBookToLibrary,
-  showAllBooks,
-  showAlert,
-  clearForm,
-  displayBook,
-  removeBook,
-  handleSearch,
-};
+module.exports = Book;
+module.exports = getBook;
+module.exports = storeBook;
+module.exports = deleteBook;
+module.exports = addBookToLibrary;
+module.exports = showAllBooks;
+module.exports = showAlert;
+// clearForm,
+// displayBook,
+// removeBook,
+// handleSearch,

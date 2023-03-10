@@ -84,7 +84,6 @@ function clearForm() {
   document.querySelector("#title").value = "";
   document.querySelector("#author").value = "";
   document.querySelector("#pages").value = "";
-  document.querySelector("#read").value = "";
 }
 
 function displayBook(book) {
@@ -128,7 +127,7 @@ const handleSearch = (e) => {
   books.forEach((book) => {
     const title = book.children[0].textContent.toLowerCase();
     if (title.includes(searchValue)) {
-      book.style.display = "block";
+      book.style.display = "book";
     } else {
       book.style.display = "none";
     }
