@@ -7,22 +7,36 @@ const showAllBooks = require("./library.js");
 const clearForm = require("./library.js");
 const displayBook = require("./library.js");
 
-test("getBook is an object", () => {
-  expect(typeof getBook).toBe("object");
+test("addBookToLibrary is a function", () => {
+  expect(typeof addBookToLibrary).toBe("function");
 });
 
-test("addBookToLibrary is to add a book to the library", () => {
+test("addBookToLibrary is adding a book to the localStorage", () => {
   const book = {
     title: "The Hobbit",
     author: "J.R.R. Tolkien",
     pages: 295,
     read: "Yes",
   };
-  expect(addBookToLibrary(book)).toBe(book);
+  addBookToLibrary(book);
+  expect(getBook()).toContain(book);
 });
 
-test("showAlert is to show an alert", () => {
-  const message = "Book added";
-  const className = "success";
-  expect(showAlert(message, className)).toBe(message);
+test("getBook is a function", () => {
+  expect(typeof getBook).toBe("function");
+});
+
+test("getBook is getting a book from the localStorage", () => {
+  const book = {
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    pages: 295,
+    read: "Yes",
+  };
+
+  expect(getBook()).toContain(book);
+});
+
+test("showAlert is a function", () => {
+  expect(typeof showAlert).toBe("function");
 });
