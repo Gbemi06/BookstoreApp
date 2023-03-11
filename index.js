@@ -114,11 +114,23 @@ function displayBook(book) {
 }
 
 function removeBook(e) {
-  e.target.parentElement.parentElement.parentElement.remove();
-  deleteBook(
-    e.target.parentElement.parentElement.parentElement.children[0].textContent
-  );
-  showAlert("Book deleted successfully", "success");
+  if (e.target.parentElement.classList.contains("remove")) {
+    e.target.parentElement.parentElement.parentElement.remove();
+    console.log(e.target.parentElement.parentElement.parentElement);
+    deleteBook(
+      e.target.parentElement.parentElement.previousElementSibling
+        .previousElementSibling.previousElementSibling.previousElementSibling
+        .textContent
+    );
+    console.log(
+      e.target.parentElement.parentElement.previousElementSibling
+        .previousElementSibling.previousElementSibling.previousElementSibling
+        .textContent
+    );
+    showAlert("Book deleted successfully", "success");
+  } else {
+    showAlert("Book not deleted", "error");
+  }
 }
 
 const handleSearch = (e) => {
@@ -134,7 +146,7 @@ const handleSearch = (e) => {
   });
 };
 
-document.querySelector("#search").addEventListener("keyup", handleSearch);
+document.querySelector("#search").addEventListener(onkeyup, handleSearch);
 
 window.onload = function () {
   getBook();
